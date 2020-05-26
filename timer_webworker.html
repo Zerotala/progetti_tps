@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>timer</title>
+	<link rel="stylesheet" type="text/css" href="style_webworker.css">
+</head>
+<body>
+
+	<div id="glass"></div>
+	<div class="timer_container">
+
+		<div class="numbers">
+			<p id="timer">00:00:000</p>
+		</div>
+
+	</div>
+
+	<div class="buttons">	
+
+		<button onclick="startTimer()" id="start_button">Start</button>
+		<button onclick="stopTimer()" id="stop_button">Stop</button>
+		<button onclick="azzera()" id="azzera" disabled>Azzera il timer</button>
+
+	</div>
+
+</body>
+
+<script type="text/javascript">
+
+	var w = null;
+
+	function startTimer()
+	{
+		
+	   //controllo se i webworker sono supportati
+	   if (typeof(Worker)!=="undefined"){
+	   	
+	      // controllo se è stato creato, altrimenti ne creo uno nuovo
+	      if (w==null){
+	         w = new Worker("worker.js");
+	      }
+	      // aggiorno il valore
+	      w.onmessage = function (event) {
+	         document.getElementById("timer").innerHTML = event.data;
+	      };
+	   } else {
+	      //se i Web workers non sono supportati dal browser
+	      alert("Il tuo browser non supporta i webworker");
+	   }
+
+	   document.getElementById("azzera").disabled = true;
+	}
+
+	// per fermare il webworker
+	function stopTimer()
+	{
+	   w.terminate();
+	   timerStart = true;
+	   w = null;
+	   document.getElementById("azzera").disabled = false;
+	}
+
+	function azzera() {
+
+		document.getElementById("timer").innerHTML = "00:00:000";
+
+	}
+
+</script>
+
+
+</html>

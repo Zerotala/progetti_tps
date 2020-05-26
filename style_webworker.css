@@ -1,0 +1,84 @@
+@font-face{
+ font-family:'digital_clock';
+ src: url('digital_clock.otf');
+}
+
+body {
+
+	margin: 0;
+	padding: 0;
+	max-height: 100vh;
+	background: url(metro_background.jpg);
+	background-size: cover;
+}
+
+#glass,
+.timer_container {
+	position: absolute;
+	top: 30%;
+	left: 25%;
+	height: 30%;
+	width: 50%;
+
+}
+
+#glass {
+	opacity: .5;
+	background: white;
+	-webkit-filter: blur(2px);
+	border-radius: 20px;
+}
+
+.timer_container {
+	background-size: contain;	
+	text-align: center;	
+}
+
+.numbers p {
+	position: absolute;	
+	top: -55%;
+	left: 10%;
+	font-family: 'digital_clock';
+	font-size: 140px;
+	outline: none;
+	letter-spacing: 5px;
+}
+
+button {
+	top: 70%;
+	height: 35px;
+	width: 120px;
+	border: none;
+	border-radius: 20px;
+	outline: none;
+	
+}
+
+button:active {
+  background-color: #3e8e41;
+  transform: translateY(4px);
+}
+button:hover {
+	background-color: lightgray;
+	cursor: pointer;
+}
+
+#start_button {
+	position: absolute;
+	left: 35%;
+}
+
+#stop_button {
+	position: absolute;
+	left: 56%;
+}
+
+#azzera {
+
+	position: absolute;
+	left: 45%;
+	top: 80%;
+
+
+}
+
